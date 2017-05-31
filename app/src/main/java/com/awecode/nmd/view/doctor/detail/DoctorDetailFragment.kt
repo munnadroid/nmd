@@ -1,4 +1,4 @@
-package com.awecode.nmd.view.specialist.doctor
+package com.awecode.nmd.view.doctor.detail
 
 import android.os.Bundle
 import android.view.View
@@ -34,14 +34,14 @@ class DoctorDetailFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-            nameTextView.text = mDoctor?.name
-            designationTextView.text = mDoctor?.designation + "\n" + mDoctor?.hospitalName
-            experienceTextView.text = "Experience " + mDoctor?.experience
+        nameTextView.text = mDoctor?.name
+        designationTextView.text = mDoctor?.designation + "\n" + mDoctor?.hospitalName
+        experienceTextView.text = "Experience " + mDoctor?.experience
 
-            Picasso.with(context)
-                    .load(mDoctor?.profilePic)
-                    .placeholder(R.drawable.person_placeholder)
-                    .into(profileImageView)
+        Picasso.with(context)
+                .load(mDoctor?.profilePic)
+                .placeholder(R.drawable.person_placeholder)
+                .into(profileImageView)
 
         bookNowButton.setOnClickListener { toast(getString(R.string.feature_available_soon)) }
 

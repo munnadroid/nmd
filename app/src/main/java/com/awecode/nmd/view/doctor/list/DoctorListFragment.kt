@@ -1,13 +1,11 @@
-package com.awecode.nmd.view.specialist.doctor
+package com.awecode.nmd.view.doctor.list
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.awecode.nmd.R
 import com.awecode.nmd.models.Doctor
-import com.awecode.nmd.view.specialist.CategoryFragment
 import com.awecode.stockapp.util.extensions.launchActivity
-import com.awecode.stockapp.util.extensions.v
 import com.awecode.stockapp.view.adapter.DoctorListAdapter
 import com.awecode.stockapp.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_doctor_list.*

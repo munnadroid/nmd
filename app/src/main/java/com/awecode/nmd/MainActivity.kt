@@ -7,8 +7,8 @@ import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
-import com.awecode.nmd.view.specialist.CategoryActivity
-import com.awecode.nmd.view.specialist.CategoryFragment
+import com.awecode.nmd.view.doctor.category.CategoryActivity
+import com.awecode.nmd.view.doctor.category.CategoryFragment
 import com.awecode.stockapp.util.extensions.drawableRes
 import com.awecode.stockapp.util.extensions.launchActivity
 import com.awecode.stockapp.view.base.BaseActivity

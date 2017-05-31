@@ -1,4 +1,4 @@
-package com.awecode.nmd.view.specialist.doctor
+package com.awecode.nmd.view.doctor.list
 
 import android.os.Bundle
 import com.awecode.nmd.R

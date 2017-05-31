@@ -33,13 +33,13 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
         <activity
-            android:name=".view.specialist.CategoryActivity"
+            android:name=".view.doctor.category.CategoryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.specialist.doctor.DoctorListActivity"
+            android:name=".view.doctor.list.DoctorListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.specialist.doctor.DoctorDetailActivity"
+            android:name=".view.doctor.list.DoctorDetailActivity"
             android:screenOrientation="portrait" />
     </application>
 
