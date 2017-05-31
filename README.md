@@ -1,6 +1,13 @@
+# Nepal Medical Directory
 
 
+<br>
+<img height="500" src="https://github.com/munnadroid/nmd/blob/master/app/screenshot_1.png"/>
+<br>
 
+
+   
+   
 This a project work of MBA ([SOMTU](http://www.somtu.edu.np/), Kirtipur) 2nd semester. This android application intents to keep record of nearby hospitals and their informations.
 
 This application is made using open source technology like kotlin and android development kit.
@@ -16,5 +23,5 @@ Library Used
 
 Contributors
 ==============
-1. Samyukta Gurung   
-2. Jashmin Shrestha 
+1. [Samyukta Gurung](https://github.com/yuktamas)   
+2. [Jashmin Shrestha](https://github.com/jashminshrestha02)
