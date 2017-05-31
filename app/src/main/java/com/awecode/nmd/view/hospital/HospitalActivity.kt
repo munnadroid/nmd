@@ -5,6 +5,7 @@ import com.awecode.nmd.R
 import com.awecode.nmd.models.Hospital
 import com.awecode.stockapp.util.extensions.changeDefaultNavIconColor
 import com.awecode.stockapp.util.extensions.colorRes
+import com.awecode.stockapp.util.extensions.toast
 import com.awecode.stockapp.view.base.BaseActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -60,7 +61,12 @@ class HospitalActivity : BaseActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(27.667769, 85.277048), 14.0f))
-
+        mMap!!.setOnInfoWindowClickListener { marker ->
+            val title=marker.title
+            hospitalList!!
+                    .filter { it.name==title }
+                    .forEach { toast("matched: "+it) }
+        }
 
         for (data in hospitalList!!) {
             // Add a marker in Sydney and move the camera
