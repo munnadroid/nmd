@@ -6,7 +6,6 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
 
 
-
     <string name="lorem">
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 		In mollis est vitae erat laoreet consectetur. Mauris dui mauris,
@@ -29,6 +28,7 @@
     <string name="search_doctors_hospitals">Search Doctors, Hospitals</string>
     <string name="doctors">Doctors</string>
     <string name="feature_available_soon">Feature will be available soon.</string>
+    <string name="title_activity_hospital">Hospitals</string>
 
 
 </resources>

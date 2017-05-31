@@ -9,6 +9,7 @@ import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
 import com.awecode.nmd.view.doctor.category.CategoryActivity
 import com.awecode.nmd.view.doctor.category.CategoryFragment
+import com.awecode.nmd.view.hospital.HospitalActivity
 import com.awecode.stockapp.util.extensions.drawableRes
 import com.awecode.stockapp.util.extensions.launchActivity
 import com.awecode.stockapp.view.base.BaseActivity
@@ -50,7 +51,7 @@ class MainActivity : BaseActivity() {
                 translucentStatusBar = true
 
                 profile("Meg Ryan", "admin@gmail.com") {
-                    iconDrawable=drawableRes(R.drawable.meg_ryan)
+                    iconDrawable = drawableRes(R.drawable.meg_ryan)
                     identifier = 100
                 }
                 onProfileChanged { _, profile, _ ->
@@ -88,6 +89,10 @@ class MainActivity : BaseActivity() {
 
             primaryItem("Hospitals") {
                 iicon = GoogleMaterial.Icon.gmd_list
+                onClick { _ ->
+                    launchActivity<HospitalActivity> { }
+                    false
+                }
             }
 
             divider {}

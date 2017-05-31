@@ -3,6 +3,8 @@
     package="com.awecode.nmd">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -41,6 +43,15 @@
         <activity
             android:name=".view.doctor.list.DoctorDetailActivity"
             android:screenOrientation="portrait" />
-    </application>
+        <activity
+            android:name=".view.hospital.HospitalActivity"
+            android:screenOrientation="portrait" />
 
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+    </application>
 </manifest>
+
