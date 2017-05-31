@@ -20,4 +20,15 @@
     </style>
 
 
+    <style name="DoctorDetailSmallTitleStyle" parent="DoctorDetailSmallContentStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/activity_margin</item>
+    </style>
+
+    <style name="DoctorDetailSmallContentStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

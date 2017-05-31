@@ -55,6 +55,12 @@ abstract class BaseFragment : Fragment() {
         ft.commit()
     }
 
+    fun changeChildFragment(fragment: Fragment) {
+        val ft = childFragmentManager.beginTransaction()
+        ft.replace(R.id.container, fragment)
+        ft.addToBackStack(null)
+        ft.commit()
+    }
 
     fun clearBackStack() {
         val manager = activity.supportFragmentManager

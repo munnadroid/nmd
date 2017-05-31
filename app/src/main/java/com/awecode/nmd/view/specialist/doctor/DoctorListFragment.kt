@@ -5,12 +5,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.awecode.nmd.R
 import com.awecode.nmd.models.Doctor
-import com.awecode.stockapp.util.extensions.toast
+import com.awecode.nmd.view.specialist.CategoryFragment
+import com.awecode.stockapp.util.extensions.launchActivity
+import com.awecode.stockapp.util.extensions.v
 import com.awecode.stockapp.view.adapter.DoctorListAdapter
 import com.awecode.stockapp.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_doctor_list.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 /**
  * Created by munnadroid on 5/30/17.
@@ -32,15 +32,15 @@ class DoctorListFragment : BaseFragment() {
     /**
      * request api and populate in list in view
      */
-    fun setupListAdapter() = doAsync {
+    fun setupListAdapter() {
         var dataList = getDummyList()
-        uiThread {
-            recyclerView.layoutManager = LinearLayoutManager(activity)
-            val adapter = DoctorListAdapter(dataList) {
-                toast("item clicked: $it")
-            }
-           recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        val adapter = DoctorListAdapter(dataList) {
+           launchActivity<DoctorDetailActivity> {
+               putExtra(DoctorDetailActivity.INTENT_DATA,it)
+           }
         }
+        recyclerView.adapter = adapter
 
     }
 
