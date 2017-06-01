@@ -1,24 +1,53 @@
 package com.awecode.nmd.view.hospital
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.ComponentName
+import android.content.Intent
+import android.location.Location
+import android.net.Uri
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import com.awecode.nmd.R
+import com.awecode.nmd.listener.ButtonType
+import com.awecode.nmd.listener.HospitalBtnClickListener
 import com.awecode.nmd.models.Hospital
 import com.awecode.stockapp.util.extensions.changeDefaultNavIconColor
 import com.awecode.stockapp.util.extensions.colorRes
 import com.awecode.stockapp.util.extensions.toast
+import com.awecode.stockapp.view.adapter.HospitalListAdapter
 import com.awecode.stockapp.view.base.BaseActivity
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.location.LocationServices.API
+import com.google.android.gms.location.LocationServices.FusedLocationApi
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_category.*
+import kotlinx.android.synthetic.main.fragment_category.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.email
+import org.jetbrains.anko.makeCall
+import org.jetbrains.anko.uiThread
 
-class HospitalActivity : BaseActivity(), OnMapReadyCallback {
+
+class HospitalActivity : BaseActivity(),
+        OnMapReadyCallback,
+        HospitalBtnClickListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
+
 
     private var mMap: GoogleMap? = null
+    private var mGoogleApiClient: GoogleApiClient? = null
     private var hospitalList: List<Hospital>? = null
+    private var mLastLocation: Location? = null
+    private var mLastLatLong: LatLng? = null
 
     override val layoutId: Int = R.layout.activity_hospital
 
@@ -31,7 +60,108 @@ class HospitalActivity : BaseActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        setupListAdapter()
+
+        checkLocationCallPermission()
     }
+
+
+    /**
+     * request api and populate in list in view
+     */
+    fun setupListAdapter() = doAsync {
+        var dataList = getDummyList()
+        uiThread {
+            recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+            val adapter = HospitalListAdapter(dataList) {
+
+            }
+            adapter.hospitalBtnClickListener = this@HospitalActivity
+            recyclerView.adapter = adapter
+        }
+
+    }
+
+    override fun onBtnClickListener(buttonType: ButtonType, hospital: Hospital) {
+        when (buttonType) {
+            ButtonType.CALL -> makeCall(hospital.telephone)
+            ButtonType.DIRECTION -> {
+                if (mLastLatLong != null)
+                    showDirection(hospital)
+            }
+            ButtonType.EMAIL -> email(hospital.email)
+        }
+    }
+
+    private fun showDirection(hospital: Hospital) {
+        val intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?f=d&saddr=${mLastLatLong?.latitude},${mLastLatLong?.longitude}" +
+                        "&daddr=${hospital.latitude},${hospital.longitude}"))
+        intent.component = ComponentName("com.google.android.apps.maps",
+                "com.google.android.maps.MapsActivity")
+        startActivity(intent)
+    }
+
+
+    private fun checkLocationCallPermission() {
+        val rxPermissions = RxPermissions(this)
+        rxPermissions
+                .request(Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.CALL_PHONE)
+                .subscribe { granted ->
+                    if (granted) {
+                        // All requested permissions are granted
+                        initializeGoogleApiClient()
+
+                    } else {
+                        // At least one permission is denied
+                    }
+                }
+    }
+
+
+    private fun initializeGoogleApiClient() {
+        // Create an instance of GoogleAPIClient.
+        if (mGoogleApiClient == null)
+            mGoogleApiClient = GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(API)
+                    .build()
+
+    }
+
+
+    @SuppressLint("MissingPermission")
+    override fun onConnected(bundle: Bundle?) {
+        mLastLocation = FusedLocationApi.getLastLocation(
+                mGoogleApiClient)
+        if (mLastLocation != null)
+            mLastLatLong = LatLng(mLastLocation?.latitude as Double, mLastLocation?.longitude as Double)
+
+    }
+
+
+    override fun onConnectionSuspended(i: Int) {
+
+    }
+
+    override fun onConnectionFailed(connectionResult: ConnectionResult) {
+        toast("Problem occured while getting your location.")
+    }
+
+    override fun onStart() {
+        mGoogleApiClient?.connect()
+        super.onStart()
+    }
+
+    override fun onStop() {
+        mGoogleApiClient?.disconnect()
+        super.onStop()
+    }
+
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
@@ -62,10 +192,10 @@ class HospitalActivity : BaseActivity(), OnMapReadyCallback {
         mMap = googleMap
         mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(27.667769, 85.277048), 14.0f))
         mMap!!.setOnInfoWindowClickListener { marker ->
-            val title=marker.title
+            val title = marker.title
             hospitalList!!
-                    .filter { it.name==title }
-                    .forEach { toast("matched: "+it) }
+                    .filter { it.name == title }
+                    .forEach { toast("matched: " + it) }
         }
 
         for (data in hospitalList!!) {
@@ -75,25 +205,29 @@ class HospitalActivity : BaseActivity(), OnMapReadyCallback {
                 addMarker(MarkerOptions().position(latlng).title(data.name))
             }
         }
+
+
     }
 
 
     private fun getDummyList(): List<Hospital> {
         return ArrayList<Hospital>().apply {
-            add(Hospital("Grande International Hospital", "Tokha, Kathmandu", "01523383",
+            add(Hospital("Grande International Hospital", "grande@gmail.com", "Tokha, Kathmandu", "01523383",
                     27.663002, 85.277421))
-            add(Hospital("Nobel Medical Hospital", "Sinamangal, Kathmandu", "01433381",
+            add(Hospital("Nobel Medical Hospital", "nobel@gmail.com", "Sinamangal, Kathmandu", "01433381",
                     27.666344, 85.272521))
-            add(Hospital("Bir Hospital", "Sundhara, Kathmandu", "01500380",
+            add(Hospital("Bir Hospital", "bir@gmail.com", "Sundhara, Kathmandu", "01500380",
                     27.664102, 85.286769))
-            add(Hospital("Lumbini Medical College", "Kirtipur, Kathmandu", "01500111",
+            add(Hospital("Lumbini Medical College", "lumbini@lumbini.com.np", "Kirtipur, Kathmandu", "01500111",
                     27.656366, 85.277950))
-            add(Hospital("Star Hospital", "Chabahil, Kathmandu", "01544385",
+            add(Hospital("Star Hospital", "start@star.com.np", "Chabahil, Kathmandu", "01544385",
                     27.653573, 85.286855))
-            add(Hospital("Kist Hospital", "Gwarko, Lalitpur", "01428899",
+            add(Hospital("Kist Hospital", "kist@gmail.com", "Gwarko, Lalitpur", "01428899",
                     27.649391, 85.279194))
-            add(Hospital("Global Hospital", "Balkumari, Lalitpur", "01577787",
+            add(Hospital("Global Hospital", "global@gmail.com", "Balkumari, Lalitpur", "01577787",
                     27.667161, 85.285116))
         }
     }
+
+
 }

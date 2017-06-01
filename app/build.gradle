@@ -65,6 +65,11 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     //google map
-    compile 'com.google.android.gms:play-services-maps:10.2.0'
+    compile "com.google.android.gms:play-services-maps:$gms_version"
+    compile "com.google.android.gms:play-services-location:$gms_version"
+
+    //runtime permission check
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
 
 }

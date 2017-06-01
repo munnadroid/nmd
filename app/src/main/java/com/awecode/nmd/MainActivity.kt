@@ -1,5 +1,6 @@
 package com.awecode.nmd
 
+import android.Manifest
 import android.graphics.Color
 import android.os.Bundle
 import co.zsmb.materialdrawerkt.builders.accountHeader
@@ -7,7 +8,6 @@ import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
-import com.awecode.nmd.view.doctor.category.CategoryActivity
 import com.awecode.nmd.view.doctor.category.CategoryFragment
 import com.awecode.nmd.view.hospital.HospitalActivity
 import com.awecode.stockapp.util.extensions.drawableRes
@@ -18,7 +18,9 @@ import com.mikepenz.google_material_typeface_library.GoogleMaterial
 import com.mikepenz.materialdrawer.AccountHeader
 import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : BaseActivity() {
     override val layoutId = R.layout.activity_main
@@ -34,6 +36,8 @@ class MainActivity : BaseActivity() {
         collapsibleToolbarLayout.setExpandedTitleColor(Color.parseColor("#00ffffff"))
 
         changeFragment(CategoryFragment.newInstance(), cleanStack = true, addToBackStack = false)
+
+        checkLocationCallPermission()
     }
 
     fun setupNavigationMenus(savedInstanceState: Bundle?) {
@@ -82,7 +86,7 @@ class MainActivity : BaseActivity() {
             primaryItem("Doctors") {
                 iicon = GoogleMaterial.Icon.gmd_person
                 onClick { _ ->
-                    launchActivity<CategoryActivity> { }
+                    checkLocationCallPermission()
                     false
                 }
             }
@@ -110,6 +114,23 @@ class MainActivity : BaseActivity() {
 
         }
 
+    }
+
+
+    private fun checkLocationCallPermission() {
+        val rxPermissions = RxPermissions(this)
+        rxPermissions
+                .request(Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.CALL_PHONE)
+                .subscribe { granted ->
+                    if (granted) {
+                        // All requested permissions are granted
+
+                    } else {
+                        // At least one permission is denied
+                    }
+                }
     }
 
 

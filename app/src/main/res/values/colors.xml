@@ -3,12 +3,13 @@
     <color name="colorPrimary">#00bcd4</color>
     <color name="colorPrimaryDark">#008ba3</color>
     <color name="colorPrimaryLight">#62efff</color>
-    <color name="colorAccent">#FF5722</color>
+    <color name="colorAccent">#173e70</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="hospital_icon_color">@color/accent</color>
 
 </resources>

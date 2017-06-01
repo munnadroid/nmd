@@ -8,7 +8,9 @@ import paperparcel.PaperParcelable
  */
 
 @PaperParcel
-data class Specialists(val name: String, val id: Int, val totalCount: Int) : PaperParcelable {
+data class Specialists(val name: String,
+                       val id: Int,
+                       val totalCount: Int) : PaperParcelable {
     companion object {
         @JvmField val CREATOR = PaperParcelSpecialists.CREATOR
     }
@@ -16,8 +18,14 @@ data class Specialists(val name: String, val id: Int, val totalCount: Int) : Pap
 
 
 @PaperParcel
-data class Doctor(val name: String, val hospitalName: String, val email: String, val designation: String,
-                  val education: String, val experience: String, val profilePic: String, val department: String,
+data class Doctor(val name: String,
+                  val hospitalName: String,
+                  val email: String,
+                  val designation: String,
+                  val education: String,
+                  val experience: String,
+                  val profilePic: String,
+                  val department: String,
                   val address: String)
     : PaperParcelable {
     companion object {
@@ -27,8 +35,12 @@ data class Doctor(val name: String, val hospitalName: String, val email: String,
 
 
 @PaperParcel
-data class Hospital(val name: String, val address: String, val telephone: String,
-                    val latitude: Double, val longitude: Double)
+data class Hospital(val name: String,
+                    val email:String,
+                    val address: String,
+                    val telephone: String,
+                    val latitude: Double,
+                    val longitude: Double)
     : PaperParcelable {
     companion object {
         @JvmField val CREATOR = PaperParcelHospital.CREATOR
