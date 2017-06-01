@@ -18,12 +18,16 @@ class Util {
         }
 
         fun showDirection(sourceLatLng: LatLng, destLatLng: LatLng, ctx: Context) {
-            val intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://maps.google.com/maps?f=d&saddr=${sourceLatLng.latitude},${sourceLatLng.longitude}" +
-                            "&daddr=${destLatLng.latitude},${destLatLng.longitude}"))
-            intent.component = ComponentName("com.google.android.apps.maps",
-                    "com.google.android.maps.MapsActivity")
-            ctx.startActivity(intent)
+            try {
+                val intent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?f=d&saddr=${sourceLatLng.latitude},${sourceLatLng.longitude}" +
+                                "&daddr=${destLatLng.latitude},${destLatLng.longitude}"))
+                intent.component = ComponentName("com.google.android.apps.maps",
+                        "com.google.android.maps.MapsActivity")
+                ctx.startActivity(intent)
+            } catch(e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

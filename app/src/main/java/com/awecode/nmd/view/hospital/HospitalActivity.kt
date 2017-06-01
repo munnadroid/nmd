@@ -75,15 +75,19 @@ class HospitalActivity : BaseActivity(),
         uiThread {
             recyclerView.layoutManager = LinearLayoutManager(applicationContext)
             val adapter = HospitalListAdapter(dataList) {
-                launchActivity<HospitalDetailActivity> {
-                    putExtra(HospitalDetailActivity.INTENT_HOSPITAL_DATA, it)
-                    putExtra(HospitalDetailActivity.INTENT_MYLAST_LATLONG, mLastLatLong)
-                }
+                goToDetailView(it)
             }
             adapter.hospitalBtnClickListener = this@HospitalActivity
             recyclerView.adapter = adapter
         }
 
+    }
+
+    private fun goToDetailView(hospital: Hospital) {
+        launchActivity<HospitalDetailActivity> {
+            putExtra(HospitalDetailActivity.INTENT_HOSPITAL_DATA, hospital)
+            putExtra(HospitalDetailActivity.INTENT_MYLAST_LATLONG, mLastLatLong)
+        }
     }
 
     override fun onBtnClickListener(buttonType: ButtonType, hospital: Hospital) {
@@ -165,11 +169,14 @@ class HospitalActivity : BaseActivity(),
 
     fun setupToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
 
-        supportActionBar?.changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+        with(supportActionBar!!) {
+            setDisplayShowTitleEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            supportActionBar?.changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+        }
+
 
         collapsibleToolbarLayout.setExpandedTitleColor(Color.parseColor("#00ffffff"))
         collapsibleToolbarLayout.isTitleEnabled = false
@@ -194,7 +201,7 @@ class HospitalActivity : BaseActivity(),
             val title = marker.title
             hospitalList!!
                     .filter { it.name == title }
-                    .forEach { toast("matched: " + it) }
+                    .forEach { goToDetailView(it) }
         }
 
         for (data in hospitalList!!) {

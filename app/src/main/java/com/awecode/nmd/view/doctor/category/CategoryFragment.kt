@@ -46,18 +46,22 @@ class CategoryFragment : com.awecode.stockapp.view.base.BaseFragment() {
      * request api and populate in list in view
      */
     fun setupListAdapter() = doAsync {
-        var dataList = getDummyList()
-        uiThread {
-            recyclerView.layoutManager = android.support.v7.widget.LinearLayoutManager(activity)
-            val adapter = com.awecode.stockapp.view.adapter.CategoryListAdapter(dataList) {
-                if (mIsFromActivity)
-                    changeFragment(DoctorListFragment.newInstance())
-                else
-                    launchActivity<DoctorListActivity> {
-                        putExtra(DoctorListActivity.INTENT_DATA, it)
-                    }
+        try {
+            var dataList = getDummyList()
+            uiThread {
+                recyclerView?.layoutManager = android.support.v7.widget.LinearLayoutManager(activity)
+                val adapter = com.awecode.stockapp.view.adapter.CategoryListAdapter(dataList) {
+                    if (mIsFromActivity)
+                        changeFragment(DoctorListFragment.newInstance())
+                    else
+                        launchActivity<DoctorListActivity> {
+                            putExtra(DoctorListActivity.INTENT_DATA, it)
+                        }
+                }
+                recyclerView?.adapter = adapter
             }
-            recyclerView.adapter = adapter
+        } catch(e: Exception) {
+            e.printStackTrace()
         }
 
     }
