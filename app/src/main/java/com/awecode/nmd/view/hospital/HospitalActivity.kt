@@ -196,19 +196,30 @@ class HospitalActivity : BaseActivity(),
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap!!.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(27.667769, 85.277048), 14.0f))
-        mMap!!.setOnInfoWindowClickListener { marker ->
-            val title = marker.title
-            hospitalList!!
-                    .filter { it.name == title }
-                    .forEach { goToDetailView(it) }
+        with(mMap!!) {
+
+            animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(27.667769, 85.277048), 14.0f))
+            setOnInfoWindowClickListener { marker ->
+                val title = marker.title
+                hospitalList!!
+                        .filter { it.name == title }
+                        .forEach { goToDetailView(it) }
+            }
+
         }
+
+        var settings=mMap?.uiSettings
+        with(settings!!){
+            setAllGesturesEnabled(true)
+        }
+
 
         for (data in hospitalList!!) {
             // Add a marker in Sydney and move the camera
             val latlng = LatLng(data.latitude, data.longitude)
             with(mMap!!) {
                 addMarker(MarkerOptions().position(latlng).title(data.name))
+
             }
         }
 
