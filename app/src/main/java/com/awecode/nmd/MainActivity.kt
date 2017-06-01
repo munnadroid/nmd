@@ -8,9 +8,13 @@ import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
+import com.awecode.nmd.util.Constants
+import com.awecode.nmd.util.Prefs
 import com.awecode.nmd.view.doctor.category.CategoryActivity
 import com.awecode.nmd.view.doctor.category.CategoryFragment
 import com.awecode.nmd.view.hospital.HospitalActivity
+import com.awecode.nmd.view.login.LoginActivity
+import com.awecode.nmd.view.other.OtherActivity
 import com.awecode.stockapp.util.extensions.drawableRes
 import com.awecode.stockapp.util.extensions.launchActivity
 import com.awecode.stockapp.view.base.BaseActivity
@@ -87,7 +91,7 @@ class MainActivity : BaseActivity() {
             primaryItem("Doctors") {
                 iicon = GoogleMaterial.Icon.gmd_person
                 onClick { _ ->
-                   launchActivity<CategoryActivity> {  }
+                    launchActivity<CategoryActivity> { }
                     false
                 }
             }
@@ -105,11 +109,24 @@ class MainActivity : BaseActivity() {
             primaryItem("Setting") {
                 iicon = GoogleMaterial.Icon.gmd_settings
             }
-            primaryItem("Support") {
-                iicon = GoogleMaterial.Icon.gmd_help
+
+            primaryItem("About Us") {
+                iicon = GoogleMaterial.Icon.gmd_info
+                onClick { _ ->
+                    launchActivity<OtherActivity> {
+                        putExtra(OtherActivity.INTENT_VIEW_TYPE, OtherActivity.VIEWTYPE.ABOUTUS)
+                    }
+                    false
+                }
             }
             primaryItem("Logout") {
                 iicon = FontAwesome.Icon.faw_sign_out
+                onClick { _ ->
+                    Prefs.remove(Constants.PREFS_LOGIN_STATUS)
+                    launchActivity<LoginActivity> { }
+                    finish()
+                    false
+                }
             }
 
 

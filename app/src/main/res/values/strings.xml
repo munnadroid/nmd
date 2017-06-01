@@ -29,6 +29,9 @@
     <string name="doctors">Doctors</string>
     <string name="feature_available_soon">Feature will be available soon.</string>
     <string name="title_activity_hospital">Hospitals</string>
+    <string name="aboutus">About Us</string>
+	<string name="contactus">Contact Us</string>
+
 
 
 </resources>

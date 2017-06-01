@@ -84,4 +84,10 @@ class HospitalDetailActivity : BaseActivity() {
         toolbar.invalidate()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+
 }

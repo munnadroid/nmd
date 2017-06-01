@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_margin"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="@dimen/login_view_logo_size"
+        android:layout_height="@dimen/login_view_logo_size"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:src="@drawable/nmd_logo" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:gravity="left"
+        android:text="Welcome to the website of Nepal Medical Directory (NMD). This website has been created to help people currently residing in Nepal to find the hospitals nearby their locations and select a doctor from a vast range of specialized medical professionals.
+\n\n\nP.O.Box:14111, Kritipur\nKathmandu, Nepal"
+        android:textSize="@dimen/aboutus_txt_size" />
+
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:id="@+id/telephoneTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/aboutus_info_height"
+        android:layout_marginTop="@dimen/aboutus_info_margin_top"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:text="{gmd-call} 977-1-4567890"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/aboutus_txt_size" />
+
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/aboutus_info_height"
+        android:layout_marginTop="@dimen/aboutus_info_margin_top"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:text="{faw-fax} 977-1-45876312"
+        android:textSize="@dimen/aboutus_txt_size" />
+
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:id="@+id/emailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/aboutus_info_height"
+        android:layout_marginTop="@dimen/aboutus_info_margin_top"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:text="{gmd-email} info@nmd.com"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/aboutus_txt_size" />
+
+    <com.mikepenz.iconics.view.IconicsTextView
+        android:id="@+id/websiteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/aboutus_info_height"
+        android:layout_marginTop="@dimen/aboutus_info_margin_top"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:text="{gmd-link} https://nepalmedicaldirectory.com"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/aboutus_txt_size" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Version: 1.0.1"
+        android:textSize="8sp" />
+
+</LinearLayout>

@@ -5,4 +5,8 @@
     <dimen name="doctor_list_profile_img_size">80dp</dimen>
     <dimen name="hospital_list_icon_size">25dp</dimen>
     <dimen name="hospital_list_icon_txt_size">12sp</dimen>
+    <dimen name="login_view_logo_size">80dp</dimen>
+    <dimen name="aboutus_txt_size">12sp</dimen>
+    <dimen name="aboutus_info_margin_top">5dp</dimen>
+    <dimen name="aboutus_info_height">20dp</dimen>
 </resources>
