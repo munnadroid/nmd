@@ -48,6 +48,9 @@
         <activity
             android:name=".view.hospital.HospitalActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.hospital.HospitalDetailActivity"
+            android:screenOrientation="portrait" />
 
 
         <meta-data

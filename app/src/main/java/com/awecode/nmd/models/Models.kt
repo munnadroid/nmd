@@ -40,7 +40,8 @@ data class Hospital(val name: String,
                     val address: String,
                     val telephone: String,
                     val latitude: Double,
-                    val longitude: Double)
+                    val longitude: Double,
+                    val website:String)
     : PaperParcelable {
     companion object {
         @JvmField val CREATOR = PaperParcelHospital.CREATOR

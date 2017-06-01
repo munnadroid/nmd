@@ -15,6 +15,7 @@ import com.awecode.nmd.listener.HospitalBtnClickListener
 import com.awecode.nmd.models.Hospital
 import com.awecode.stockapp.util.extensions.changeDefaultNavIconColor
 import com.awecode.stockapp.util.extensions.colorRes
+import com.awecode.stockapp.util.extensions.launchActivity
 import com.awecode.stockapp.util.extensions.toast
 import com.awecode.stockapp.view.adapter.HospitalListAdapter
 import com.awecode.stockapp.view.base.BaseActivity
@@ -76,7 +77,9 @@ class HospitalActivity : BaseActivity(),
         uiThread {
             recyclerView.layoutManager = LinearLayoutManager(applicationContext)
             val adapter = HospitalListAdapter(dataList) {
-
+                launchActivity<HospitalDetailActivity> {
+                    putExtra(HospitalDetailActivity.INTENT_HOSPITAL_DATA, it)
+                }
             }
             adapter.hospitalBtnClickListener = this@HospitalActivity
             recyclerView.adapter = adapter
@@ -218,19 +221,19 @@ class HospitalActivity : BaseActivity(),
     private fun getDummyList(): List<Hospital> {
         return ArrayList<Hospital>().apply {
             add(Hospital("Grande International Hospital", "grande@gmail.com", "Tokha, Kathmandu", "01523383",
-                    27.663002, 85.277421))
+                    27.663002, 85.277421, "https://grande.com.np"))
             add(Hospital("Nobel Medical Hospital", "nobel@gmail.com", "Sinamangal, Kathmandu", "01433381",
-                    27.666344, 85.272521))
+                    27.666344, 85.272521, "https://nobelhospital.com.np"))
             add(Hospital("Bir Hospital", "bir@gmail.com", "Sundhara, Kathmandu", "01500380",
-                    27.664102, 85.286769))
+                    27.664102, 85.286769, "https://birhospital.com.np"))
             add(Hospital("Lumbini Medical College", "lumbini@lumbini.com.np", "Kirtipur, Kathmandu", "01500111",
-                    27.656366, 85.277950))
+                    27.656366, 85.277950, "https://lumbinihospital.com.np"))
             add(Hospital("Star Hospital", "start@star.com.np", "Chabahil, Kathmandu", "01544385",
-                    27.653573, 85.286855))
+                    27.653573, 85.286855, "https://starthospital.com.np"))
             add(Hospital("Kist Hospital", "kist@gmail.com", "Gwarko, Lalitpur", "01428899",
-                    27.649391, 85.279194))
+                    27.649391, 85.279194, "https://kist.com.np"))
             add(Hospital("Global Hospital", "global@gmail.com", "Balkumari, Lalitpur", "01577787",
-                    27.667161, 85.285116))
+                    27.667161, 85.285116, "https://globalhospital.com.np"))
         }
     }
 

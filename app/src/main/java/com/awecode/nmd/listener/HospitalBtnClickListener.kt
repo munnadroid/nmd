@@ -13,5 +13,4 @@ enum class ButtonType{
     CALL,
     DIRECTION,
     EMAIL,
-    ITEM_VIEW
 }
