@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -28,8 +29,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.tbruyelle.rxpermissions2.RxPermissions
-import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.activity_hospital.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.email
 import org.jetbrains.anko.makeCall
@@ -55,6 +55,7 @@ class HospitalActivity : BaseActivity(),
         super.onCreate(savedInstanceState)
 
         setupToolbar()
+
         hospitalList = getDummyList()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -170,11 +171,15 @@ class HospitalActivity : BaseActivity(),
 
     fun setupToolbar() {
         setSupportActionBar(toolbar)
-
-        supportActionBar?.title = "Hospitals"
+        supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
         supportActionBar?.changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+
+        collapsibleToolbarLayout.setExpandedTitleColor(Color.parseColor("#00ffffff"))
+        collapsibleToolbarLayout.isTitleEnabled = false
+        supportActionBar?.title = "Hospitals"
 
     }
 
