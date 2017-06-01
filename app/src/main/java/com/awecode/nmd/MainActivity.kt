@@ -15,9 +15,9 @@ import com.awecode.nmd.view.doctor.category.CategoryFragment
 import com.awecode.nmd.view.hospital.HospitalActivity
 import com.awecode.nmd.view.login.LoginActivity
 import com.awecode.nmd.view.other.OtherActivity
-import com.awecode.stockapp.util.extensions.drawableRes
-import com.awecode.stockapp.util.extensions.launchActivity
-import com.awecode.stockapp.view.base.BaseActivity
+import com.awecode.nmd.util.extensions.drawableRes
+import com.awecode.nmd.util.extensions.launchActivity
+import com.awecode.nmd.view.base.BaseActivity
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.google_material_typeface_library.GoogleMaterial
 import com.mikepenz.materialdrawer.AccountHeader

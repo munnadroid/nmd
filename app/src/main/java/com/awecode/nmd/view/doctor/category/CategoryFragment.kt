@@ -2,8 +2,10 @@ package com.awecode.nmd.view.doctor.category
 
 import com.awecode.nmd.view.doctor.list.DoctorListActivity
 import com.awecode.nmd.view.doctor.list.DoctorListFragment
-import com.awecode.stockapp.util.extensions.hide
-import com.awecode.stockapp.util.extensions.launchActivity
+import com.awecode.nmd.util.extensions.hide
+import com.awecode.nmd.util.extensions.launchActivity
+import com.awecode.nmd.view.adapter.CategoryListAdapter
+import com.awecode.nmd.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -11,7 +13,7 @@ import org.jetbrains.anko.uiThread
 /**
  * Created by munnadroid on 5/30/17.
  */
-class CategoryFragment : com.awecode.stockapp.view.base.BaseFragment() {
+class CategoryFragment : BaseFragment() {
     override val layoutId: Int = com.awecode.nmd.R.layout.fragment_category
 
     companion object {
@@ -50,7 +52,7 @@ class CategoryFragment : com.awecode.stockapp.view.base.BaseFragment() {
             var dataList = getDummyList()
             uiThread {
                 recyclerView?.layoutManager = android.support.v7.widget.LinearLayoutManager(activity)
-                val adapter = com.awecode.stockapp.view.adapter.CategoryListAdapter(dataList) {
+                val adapter = CategoryListAdapter(dataList) {
                     if (mIsFromActivity)
                         changeFragment(DoctorListFragment.newInstance())
                     else

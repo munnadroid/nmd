@@ -5,9 +5,9 @@ import android.widget.EditText
 import com.awecode.nmd.MainActivity
 import com.awecode.nmd.R
 import com.awecode.nmd.util.PrefsHelper
-import com.awecode.stockapp.util.extensions.launchActivity
-import com.awecode.stockapp.util.extensions.toast
-import com.awecode.stockapp.view.base.BaseActivity
+import com.awecode.nmd.util.extensions.launchActivity
+import com.awecode.nmd.util.extensions.toast
+import com.awecode.nmd.view.base.BaseActivity
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
 import com.mobsandgeeks.saripaar.annotation.Email

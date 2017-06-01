@@ -1,4 +1,4 @@
-package com.awecode.stockapp.view.base
+package com.awecode.nmd.view.base
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

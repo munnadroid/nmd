@@ -1,4 +1,4 @@
-package com.awecode.stockapp.util
+package com.awecode.nmd.util
 
 import android.content.ComponentName
 import android.content.Context

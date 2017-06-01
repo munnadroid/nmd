@@ -5,7 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import com.awecode.nmd.R
-import com.awecode.stockapp.view.base.BaseFragment
+import com.awecode.nmd.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_aboutus.*
 
 /**

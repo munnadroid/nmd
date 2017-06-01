@@ -1,4 +1,4 @@
-package com.awecode.stockapp.view.adapter
+package com.awecode.nmd.view.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

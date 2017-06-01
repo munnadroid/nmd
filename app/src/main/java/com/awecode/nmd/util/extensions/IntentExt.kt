@@ -1,4 +1,4 @@
-package com.awecode.stockapp.util.extensions
+package com.awecode.nmd.util.extensions
 
 import android.app.Activity
 import android.content.Context

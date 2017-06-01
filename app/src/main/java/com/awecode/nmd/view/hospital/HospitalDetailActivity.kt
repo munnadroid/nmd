@@ -4,10 +4,10 @@ import android.graphics.Color
 import android.os.Bundle
 import com.awecode.nmd.R
 import com.awecode.nmd.models.Hospital
-import com.awecode.stockapp.util.Util
-import com.awecode.stockapp.util.extensions.changeDefaultNavIconColor
-import com.awecode.stockapp.util.extensions.colorRes
-import com.awecode.stockapp.view.base.BaseActivity
+import com.awecode.nmd.util.Util
+import com.awecode.nmd.util.extensions.changeDefaultNavIconColor
+import com.awecode.nmd.util.extensions.colorRes
+import com.awecode.nmd.view.base.BaseActivity
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_hospital_detail.*
 import kotlinx.android.synthetic.main.item_hospital.*

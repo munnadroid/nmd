@@ -1,4 +1,4 @@
-package com.awecode.stockapp.util.view
+package com.awecode.nmd.util.view
 
 /**
  * Created by munnadroid on 5/23/17.

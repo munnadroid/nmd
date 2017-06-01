@@ -5,9 +5,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.awecode.nmd.R
 import com.awecode.nmd.models.Doctor
-import com.awecode.stockapp.util.extensions.launchActivity
-import com.awecode.stockapp.view.adapter.DoctorListAdapter
-import com.awecode.stockapp.view.base.BaseFragment
+import com.awecode.nmd.util.extensions.launchActivity
+import com.awecode.nmd.view.adapter.DoctorListAdapter
+import com.awecode.nmd.view.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_doctor_list.*
 
 /**

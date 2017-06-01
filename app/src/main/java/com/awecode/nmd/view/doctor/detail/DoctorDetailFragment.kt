@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.awecode.nmd.R
 import com.awecode.nmd.models.Doctor
-import com.awecode.stockapp.util.extensions.toast
-import com.awecode.stockapp.view.base.BaseFragment
+import com.awecode.nmd.util.extensions.toast
+import com.awecode.nmd.view.base.BaseFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_doctor_detail.*
 import kotlinx.android.synthetic.main.item_doctorlist.*

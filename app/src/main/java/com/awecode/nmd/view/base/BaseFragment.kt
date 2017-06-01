@@ -1,4 +1,4 @@
-package com.awecode.stockapp.view.base
+package com.awecode.nmd.view.base
 
 
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.awecode.nmd.R
-import com.awecode.stockapp.util.extensions.inflate
+import com.awecode.nmd.util.extensions.inflate
 
 /**
  * Created by munnadroid on 5/23/17.

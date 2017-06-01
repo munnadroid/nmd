@@ -7,9 +7,9 @@ import com.awecode.nmd.MainActivity
 import com.awecode.nmd.R
 import com.awecode.nmd.util.PrefsHelper
 import com.awecode.nmd.view.login.LoginActivity
-import com.awecode.stockapp.util.extensions.launchActivity
-import com.awecode.stockapp.util.extensions.makeFullscreen
-import com.awecode.stockapp.view.base.BaseActivity
+import com.awecode.nmd.util.extensions.launchActivity
+import com.awecode.nmd.util.extensions.makeFullscreen
+import com.awecode.nmd.view.base.BaseActivity
 
 
 /**

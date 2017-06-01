@@ -1,4 +1,4 @@
-package com.awecode.stockapp.util.extensions
+package com.awecode.nmd.util.extensions
 
 /**
  * Created by munnadroid on 5/29/17.
