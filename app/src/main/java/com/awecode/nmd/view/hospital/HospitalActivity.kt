@@ -2,17 +2,15 @@ package com.awecode.nmd.view.hospital
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ComponentName
-import android.content.Intent
 import android.graphics.Color
 import android.location.Location
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.awecode.nmd.R
 import com.awecode.nmd.listener.ButtonType
 import com.awecode.nmd.listener.HospitalBtnClickListener
 import com.awecode.nmd.models.Hospital
+import com.awecode.stockapp.util.Util
 import com.awecode.stockapp.util.extensions.changeDefaultNavIconColor
 import com.awecode.stockapp.util.extensions.colorRes
 import com.awecode.stockapp.util.extensions.launchActivity
@@ -79,6 +77,7 @@ class HospitalActivity : BaseActivity(),
             val adapter = HospitalListAdapter(dataList) {
                 launchActivity<HospitalDetailActivity> {
                     putExtra(HospitalDetailActivity.INTENT_HOSPITAL_DATA, it)
+                    putExtra(HospitalDetailActivity.INTENT_MYLAST_LATLONG, mLastLatLong)
                 }
             }
             adapter.hospitalBtnClickListener = this@HospitalActivity
@@ -92,21 +91,13 @@ class HospitalActivity : BaseActivity(),
             ButtonType.CALL -> makeCall(hospital.telephone)
             ButtonType.DIRECTION -> {
                 if (mLastLatLong != null)
-                    showDirection(hospital)
+                    Util.showDirection(LatLng(mLastLatLong!!.latitude, mLastLatLong!!.longitude),
+                            LatLng(hospital.latitude, hospital.longitude),
+                            applicationContext)
             }
             ButtonType.EMAIL -> email(hospital.email)
         }
     }
-
-    private fun showDirection(hospital: Hospital) {
-        val intent = Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?f=d&saddr=${mLastLatLong?.latitude},${mLastLatLong?.longitude}" +
-                        "&daddr=${hospital.latitude},${hospital.longitude}"))
-        intent.component = ComponentName("com.google.android.apps.maps",
-                "com.google.android.maps.MapsActivity")
-        startActivity(intent)
-    }
-
 
     private fun checkLocationCallPermission() {
         val rxPermissions = RxPermissions(this)

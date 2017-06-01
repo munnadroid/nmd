@@ -8,6 +8,7 @@ import co.zsmb.materialdrawerkt.builders.drawer
 import co.zsmb.materialdrawerkt.draweritems.badgeable.primaryItem
 import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
+import com.awecode.nmd.view.doctor.category.CategoryActivity
 import com.awecode.nmd.view.doctor.category.CategoryFragment
 import com.awecode.nmd.view.hospital.HospitalActivity
 import com.awecode.stockapp.util.extensions.drawableRes
@@ -86,7 +87,7 @@ class MainActivity : BaseActivity() {
             primaryItem("Doctors") {
                 iicon = GoogleMaterial.Icon.gmd_person
                 onClick { _ ->
-                    checkLocationCallPermission()
+                   launchActivity<CategoryActivity> {  }
                     false
                 }
             }

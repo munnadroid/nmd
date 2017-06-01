@@ -38,10 +38,12 @@ class DoctorDetailActivity : BaseActivity() {
     fun setupToolbar(doctor: Doctor) {
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = doctor.name
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+        with(supportActionBar!!) {
+            title = doctor.name
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+        }
 
     }
 

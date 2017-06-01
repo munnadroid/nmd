@@ -29,10 +29,13 @@ class CategoryActivity : BaseActivity() {
     fun setupToolbar() {
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = getString(R.string.doctors)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+        with(supportActionBar!!) {
+            title = getString(R.string.doctors)
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            changeDefaultNavIconColor(applicationContext, colorRes(R.color.white))
+        }
+
 
     }
 
