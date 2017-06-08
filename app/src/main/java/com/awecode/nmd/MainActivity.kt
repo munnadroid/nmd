@@ -10,14 +10,14 @@ import co.zsmb.materialdrawerkt.draweritems.divider
 import co.zsmb.materialdrawerkt.draweritems.profile.profile
 import com.awecode.nmd.util.Constants
 import com.awecode.nmd.util.Prefs
+import com.awecode.nmd.util.extensions.drawableRes
+import com.awecode.nmd.util.extensions.launchActivity
+import com.awecode.nmd.view.base.BaseActivity
 import com.awecode.nmd.view.doctor.category.CategoryActivity
 import com.awecode.nmd.view.doctor.category.CategoryFragment
 import com.awecode.nmd.view.hospital.HospitalActivity
 import com.awecode.nmd.view.login.LoginActivity
 import com.awecode.nmd.view.other.OtherActivity
-import com.awecode.nmd.util.extensions.drawableRes
-import com.awecode.nmd.util.extensions.launchActivity
-import com.awecode.nmd.view.base.BaseActivity
 import com.mikepenz.fontawesome_typeface_library.FontAwesome
 import com.mikepenz.google_material_typeface_library.GoogleMaterial
 import com.mikepenz.materialdrawer.AccountHeader
@@ -25,6 +25,7 @@ import com.mikepenz.materialdrawer.Drawer
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.makeCall
 
 
 class MainActivity : BaseActivity() {
@@ -100,6 +101,14 @@ class MainActivity : BaseActivity() {
                 iicon = GoogleMaterial.Icon.gmd_list
                 onClick { _ ->
                     launchActivity<HospitalActivity> { }
+                    false
+                }
+            }
+
+            primaryItem("Emergency Call") {
+                iicon = FontAwesome.Icon.faw_phone
+                onClick { _ ->
+                    makeCall("01-4332719")
                     false
                 }
             }
